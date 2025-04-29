@@ -1,0 +1,74 @@
+{
+  "data": [
+    {
+      "_id": "6810434d015b5bea21e7009a",
+      "user_id": "1",
+      "movie_id": "6810027af145ba12f34a702b",
+      "tmdb_id": 519253,
+      "title": "Forgive Us Our Debts",
+      "original_title": "Rimetti a noi i nostri debiti",
+      "overview": "Threatened by creditors, a newly unemployed man agrees to work for a debt collector, but soon discovers his deal with the devil has unexpected costs.",
+      "release_date": "2018-05-04T00:00:00.000Z",
+      "budget": 2000000,
+      "revenue": 0,
+      "runtime": 104,
+      "vote_average": 6.112,
+      "vote_count": 272,
+      "popularity": 8.539,
+      "status": "Released",
+      "genres": [
+        {
+          "name": "Drama",
+          "_id": "681031572030f2667e498f21"
+        }
+      ],
+      "spoken_languages": [
+        {
+          "name": "Italian",
+          "_id": "681031572030f2667e498f22"
+        }
+      ],
+      "production_companies": [
+        {
+          "name": "Lotus Production",
+          "_id": "681031572030f2667e498f23"
+        },
+        {
+          "name": "Agresywna Banda",
+          "_id": "681031572030f2667e498f24"
+        },
+        {
+          "name": "La Luna",
+          "_id": "681031572030f2667e498f25"
+        },
+        {
+          "name": "Leone Film Group",
+          "_id": "681031572030f2667e498f26"
+        },
+        {
+          "name": "RAI Cinema",
+          "_id": "681031572030f2667e498f27"
+        },
+        {
+          "name": "Peacock Film",
+          "_id": "681031572030f2667e498f28"
+        },
+        {
+          "name": "Ska-Ndal",
+          "_id": "681031572030f2667e498f29"
+        },
+        {
+          "name": "RSI",
+          "_id": "681031572030f2667e498f2a"
+        }
+      ],
+      "__v": 0
+    }
+  ],
+  "pagination": {
+    "total": 1,
+    "page": 1,
+    "limit": 10,
+    "pages": 1
+  }
+}
