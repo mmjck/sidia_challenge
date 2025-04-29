@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">TMDBMovies</string>
+
+
+    <string name="trending">Trending Now</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="up_coming">Up Coming</string>
+    <string name="home_tab_label">Início</string>
+    <string name="favorites_tab_label">Favoritos</string>
+</resources>
