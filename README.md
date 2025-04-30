@@ -23,7 +23,7 @@ Aplicação para listagem de filmes com base no banco de dados disponibilizado e
  - Kotlin
  - MVVM
  - Hilt
- - Retrofit e OkHttp <
+ - Retrofit e OkHttp
  - Gson 
  - Glide 
 
@@ -49,3 +49,27 @@ cd database && node index.js
 ```
 
 Depois disso, abra o Android Studio, vá para Open (Abrir) e abra a pasta Movies.
+
+```
+Execute o app pelo Android Studio
+```
+
+
+
+## Abordagem 🧠
+
+
+- O banco de dados escolhido foi o MongoDB para lidar com registros com estruturas mal-definidas
+
+- A cada 30 minutos, o backend atualiza a listagem principal de filmes
+
+### Recomendação
+
+- Foi escolhido um algoritmo de similaridades entre os filmes com base no Genêro, Linguagem, popularidade, média de votos e duração. 
+
+A primeira listagem de filmes é basedas nos filmes mais avaliados. Após isso, a listagem inicial é baseada nos filmes favoritos que foram escolhidos.
+
+
+Também foi adicionado a recomendação baseada em um filme específico, presente na tela de Detalhes do Filme.
+
+
