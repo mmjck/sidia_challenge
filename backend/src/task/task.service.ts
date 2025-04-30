@@ -26,7 +26,12 @@ export class TasksService {
 
   private readonly logger = new Logger(TasksService.name);
 
-  @Cron(CronExpression.EVERY_12_HOURS)
+  async onModuleInit() {
+    this.logger.debug('Running recommendation update on startup');
+    await this.updateDatabase();
+  }
+
+  @Cron(CronExpression.EVERY_10_HOURS)
   async updateDatabase() {
     this.logger.debug('Update database');
 
@@ -46,10 +51,9 @@ export class TasksService {
     this.logger.debug('Created new movie collection with random movies.');
   }
 
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_10_HOURS)
   async updateRecommendations() {
     await this.recommendations.collection.drop();
-    this.logger.debug('Dropped current movie collection.');
     await this.recommendations.createCollection();
 
     const favoritesMovies = await this.favorite
@@ -75,6 +79,7 @@ export class TasksService {
     // insert movies based on favorites movies
     if (favoritesMovies.length != 0) {
       const movieIds = favoritesMovies.map((fav) => fav.movie_id);
+      console.log(movieIds);
 
       const data = await this.recommendation.recommendMoviesFromList(movieIds);
 
