@@ -26,6 +26,7 @@
     "@nestjs/mongoose": "^11.0.3",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/schedule": "^6.0.0",
+    "@nestjs/swagger": "^11.1.5",
     "cache-manager": "^6.4.2",
     "csv-parser": "^3.2.0",
     "faiss-node": "^0.5.1",
