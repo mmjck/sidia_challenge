@@ -31,51 +31,6 @@ export class RecommendationService {
         pages: Math.ceil(total / limit),
       },
     };
-
-    //     // const favoritesMovies = await this.favorite
-    //   .find()
-    //   .sort({ createdAt: -1 })
-    //   .skip(skip)
-    //   .limit(limit);
-    // const total = await this.movieDB.countDocuments();
-    // if (favoritesMovies.length != 0) {
-    //   const movieIds = favoritesMovies.map((fav) => fav.movie_id);
-    //   const data = await this.recommendations.recommendMoviesFromList(movieIds);
-    //   return {
-    //     data,
-    //     pagination: {
-    //       total,
-    //       page,
-    //       limit,
-    //       pages: Math.ceil(total / limit),
-    //     },
-    //   };
-    // }
-    // const data = await this.movieDB
-    //   .find()
-    //   .sort({ voteCount: -1 })
-    //   .skip(skip)
-    //   .limit(limit);
-    // const updated = await Promise.all(
-    //   data.map(async (e) => {
-    //     const existing = await this.favorite.findOne({
-    //       movie_id: e.id,
-    //     });
-    //     return {
-    //       ...e.toObject(),
-    //       isFavorite: existing ? true : false,
-    //     };
-    //   }),
-    // );
-    // return {
-    //   data: updated,
-    //   pagination: {
-    //     total,
-    //     page,
-    //     limit,
-    //     pages: Math.ceil(total / limit),
-    //   },
-    // };
   }
 
   async getRecRelatedTo(page: number, limit: number, movies: string[]) {
