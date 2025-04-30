@@ -73,3 +73,9 @@ A primeira listagem de filmes é basedas nos filmes mais avaliados. Após isso, 
 Também foi adicionado a recomendação baseada em um filme específico, presente na tela de Detalhes do Filme.
 
 
+
+
+
+<img src="https://github.com/mmjck/sidia_challenge/blob/main/Screenshot_1745974457.png" height="400px" />
+<img src="https://github.com/mmjck/sidia_challenge/blob/main/Screenshot_1745974463.png" height="400px" />
+<img src="https://github.com/mmjck/sidia_challenge/blob/main/Screenshot_1745974466.png" height="400px" />
