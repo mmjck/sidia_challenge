@@ -1,15 +1,16 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MovieDatabase, MovieDatabaseSchema } from 'src/schema/database.schema';
-import { Favorites, FavoritesSchema } from '../schema/favorites.schema';
-import { RecommendationsController } from './recommendation.controller';
-import { RecommendationService } from './recommendation.service';
-import { TasksService } from '../task/task.service';
-import { Movie, MovieSchema } from 'src/schema/movies.schema';
 import {
   MoviesRecommendations,
   MoviesRecommendationsSchema,
 } from 'src/schema/movies-recommendation.schema';
+import { Movie, MovieSchema } from 'src/schema/movies.schema';
+import { RecommendationTask } from 'src/task/recommendation.service';
+import { Favorites, FavoritesSchema } from '../schema/favorites.schema';
+import { TasksService } from '../task/task.service';
+import { RecommendationsController } from './recommendation.controller';
+import { RecommendationService } from './recommendation.service';
 
 @Module({
   imports: [
@@ -22,6 +23,6 @@ import {
     ]),
   ],
   controllers: [RecommendationsController],
-  providers: [RecommendationService, TasksService],
+  providers: [RecommendationService, TasksService, RecommendationTask],
 })
 export class RecommendationModule {}

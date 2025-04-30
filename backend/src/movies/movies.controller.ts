@@ -1,8 +1,8 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Get,
+  HttpCode,
   Param,
   Post,
   Query,
@@ -103,14 +103,10 @@ export class MoviesController {
   // })
   // @ApiNotFoundResponse({ description: 'No favorites found for this user' })
   findAllFavorites(
-    @Query('userId') userId: string,
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
   ) {
-    if (!userId) {
-      throw new BadRequestException('userId is required');
-    }
-    return this.moviesService.findAllFavorites(userId, page, limit);
+    return this.moviesService.findAllFavorites(page, limit);
   }
 
   @Get(':id')
@@ -136,13 +132,9 @@ export class MoviesController {
   // @ApiOkResponse({ description: 'Movie added to favorites successfully' })
   // @ApiNotFoundResponse({ description: 'Movie not found' })
   // @ApiBadRequestResponse({ description: 'Movie already in favorites' })
-  async setFavorites(@Body() body: { movieId: string; userId: string }) {
-    const { movieId, userId } = body;
-    return this.moviesService.setFavorite(movieId, userId);
+  @HttpCode(200) // This ensures the HTTP status is 200 OK
+  async setFavorites(@Body() body: { movieId: string }) {
+    const { movieId } = body;
+    await this.moviesService.setFavorite(movieId);
   }
-
-  // @Get(':id/recommendations')
-  // async getRecommendations(@Param('id') id: string) {
-  //   return this.moviesService.recommendMovies(id);
-  // }
 }

@@ -1,12 +1,8 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Favorites } from '../schema/favorites.schema';
 import { MovieDatabase } from 'src/schema/database.schema';
+import { Favorites } from '../schema/favorites.schema';
 
 @Injectable()
 export class MoviesService {
@@ -30,16 +26,18 @@ export class MoviesService {
     };
   }
 
-  async findAllFavorites(userId: string, page: number, limit: number) {
+  async findAllFavorites(page: number, limit: number) {
     const skip = (page - 1) * limit;
     const data = await this.favoritesModel
-      .find({ user_id: userId })
+      .find()
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
 
-    const total = await this.favoritesModel.countDocuments({ user_id: userId });
-
+    const total = await this.favoritesModel.countDocuments();
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');
     return {
       data,
       pagination: {
@@ -67,19 +65,16 @@ export class MoviesService {
     };
   }
 
-  async setFavorite(movieId: string, userId: string) {
+  async setFavorite(movieId: string) {
     const movie = await this.database.findById(movieId);
     if (!movie) throw new NotFoundException('Movie not found');
 
-    // Check if movie is already in favorites
     const existing = await this.favoritesModel.findOne({
-      user_id: userId,
       movie_id: movieId,
     });
 
     if (existing) {
       await this.favoritesModel.deleteOne({
-        user_id: userId,
         movie_id: movieId,
       });
 
@@ -88,7 +83,6 @@ export class MoviesService {
 
     // Create favorite
     const favorite = new this.favoritesModel({
-      user_id: userId,
       movie_id: movieId,
       tmdb_id: movie.tmdb_id,
       title: movie.title,
@@ -102,6 +96,7 @@ export class MoviesService {
       vote_count: movie.vote_count,
       popularity: movie.popularity,
       status: movie.status,
+      path: movie.path,
       genres: movie.genres,
       spoken_languages: movie.spoken_languages,
       production_companies: movie.production_companies,

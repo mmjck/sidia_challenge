@@ -3,8 +3,6 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Favorites extends Document {
-  @Prop() user_id: string;
-
   @Prop() movie_id: string;
   @Prop() tmdb_id: number;
   @Prop() title: string;
