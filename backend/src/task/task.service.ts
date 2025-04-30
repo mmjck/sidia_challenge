@@ -26,19 +26,24 @@ export class TasksService {
 
   private readonly logger = new Logger(TasksService.name);
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  @Cron(CronExpression.EVERY_12_HOURS)
   async updateDatabase() {
-    //   this.logger.debug('Update database');
-    //   const movies = await this.database.aggregate([
-    //     { $match: { vote_average: { $gt: 0 }, vote_count: { $gt: 100 } } },
-    //     { $sample: { size: 1000 } },
-    //   ]);
-    //   this.logger.debug(`Fetched ${movies.length} random movies.`);
-    //   await this.movieModel.collection.drop();
-    //   this.logger.debug('Dropped current movie collection.');
-    //   await this.movieModel.createCollection();
-    //   await this.movieModel.insertMany(movies);
-    //   this.logger.debug('Created new movie collection with random movies.');
+    this.logger.debug('Update database');
+
+    const movies = await this.database.aggregate([
+      { $match: { vote_average: { $gt: 0 }, vote_count: { $gt: 100 } } },
+      { $sample: { size: 1000 } },
+    ]);
+
+    this.logger.debug(`Fetched ${movies.length} random movies.`);
+
+    await this.movieModel.collection.drop();
+    this.logger.debug('Dropped current movie collection.');
+
+    await this.movieModel.createCollection();
+    await this.movieModel.insertMany(movies);
+
+    this.logger.debug('Created new movie collection with random movies.');
   }
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
@@ -52,7 +57,7 @@ export class TasksService {
       .sort({ createdAt: -1 })
       .limit(5);
 
-    // insert ramdon movies
+    // insert random movies
     if (favoritesMovies.length == 0) {
       const bestMovies = await this.movieModel
         .find()
